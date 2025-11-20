@@ -22,11 +22,9 @@
     "parcel": "^2.16.1"
   },
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
-  },
-  "browserslist": [
-    "last 10 Chrome version",
-    "last 2 Firefox version"
-  ]
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router": "^6.28.0",
+    "react-router-dom": "^6.28.0"
+  }
 }

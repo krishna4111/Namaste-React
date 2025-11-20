@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurentCards";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -14,13 +15,14 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.8174064&lng=78.683551&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    // const data = await fetch(
+    //   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.8174064&lng=78.683551&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    // );
+    const data = await fetch("https://namastedev.com/api/v1/listRestaurants");
 
     const jsonData = await data.json();
     const restaurantArray =
-      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+      jsonData?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
 
     //This is the proper structure but the initial render data matches the above structure thats why i used that in setState
@@ -30,8 +32,6 @@ const Body = () => {
 
     setRestaurantList(restaurantData);
     setFilteredRestaurant(restaurantData);
-
-    console.log("fetched data", restaurantData);
   };
 
   const topRatedRestaurants = () => {
@@ -75,7 +75,11 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurant.map((restaurant) => {
-          return <RestaurantCard key={restaurant.id} resData={restaurant} />;
+          return (
+            <Link key={restaurant.id} to={`restaurant/${restaurant.id}`}>
+              <RestaurantCard resData={restaurant} />
+            </Link>
+          );
         })}
       </div>
     </div>
