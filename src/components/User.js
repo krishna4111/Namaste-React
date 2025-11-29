@@ -5,18 +5,13 @@ const User = ({ name }) => {
   const [count2, setCount2] = useState(0);
 
   useEffect(() => {
-    console.log("use Effect Called");
-    const timer = setInterval(() => {
-      console.log("Use Effect Interval");
-    }, 2000);
+    const timer = setInterval(() => {}, 2000);
 
     return () => {
-      console.log("Use Effect Return will be called");
       clearInterval(timer);
     };
   }, []);
 
-  console.log("initial render triggered");
   return (
     <div className="user-card">
       <h1>Count : {count}</h1>

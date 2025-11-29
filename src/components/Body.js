@@ -2,46 +2,36 @@ import { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurentCards";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useRestaurants from "../utils/useRestaurants";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
-  const [restaurantList, setRestaurantList] = useState([]);
-  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  const restaurantList = useRestaurants();
+  const isOnline = useOnlineStatus();
+  // const isOnline = true;
+  console.log("isOnline", isOnline);
 
+  const [filteredRes, setFilteredRes] = useState(null);
   const [searchText, setSearchText] = useState("");
 
-  //useEffect -> Hook
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    // const data = await fetch(
-    //   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.8174064&lng=78.683551&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    // );
-    const data = await fetch("https://namastedev.com/api/v1/listRestaurants");
-
-    const jsonData = await data.json();
-    const restaurantArray =
-      jsonData?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
-
-    //This is the proper structure but the initial render data matches the above structure thats why i used that in setState
-    const restaurantData = restaurantArray.map((restaurant) => {
-      return restaurant.info;
-    });
-
-    setRestaurantList(restaurantData);
-    setFilteredRestaurant(restaurantData);
-  };
+    setFilteredRes(restaurantList);
+  }, [restaurantList]);
 
   const topRatedRestaurants = () => {
-    const filteredRestaurant = restaurantList.filter((restaurant) => {
-      return restaurant.avgRating > 4.5;
-    });
-    setRestaurantList(filteredRestaurant);
+    const filtered = restaurantList.filter(
+      (restaurant) => restaurant.avgRating > 4.5
+    );
+    setFilteredRes(filtered);
   };
 
-  return restaurantList.length === 0 ? (
+  if (isOnline === false) {
+    return (
+      <h1>Looks like you are offline please check your internet connection</h1>
+    );
+  }
+
+  return restaurantList?.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
@@ -63,7 +53,7 @@ const Body = () => {
                   return restaurant.name.toLowerCase().includes(searchText);
                 }
               );
-              setFilteredRestaurant(filteredRestaurants);
+              setFilteredRes(filteredRestaurants);
             }}
           >
             Search
@@ -74,13 +64,14 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {filteredRestaurant.map((restaurant) => {
-          return (
-            <Link key={restaurant.id} to={`restaurant/${restaurant.id}`}>
-              <RestaurantCard resData={restaurant} />
-            </Link>
-          );
-        })}
+        {isOnline &&
+          filteredRes?.map((restaurant) => {
+            return (
+              <Link key={restaurant?.id} to={`restaurant/${restaurant?.id}`}>
+                <RestaurantCard resData={restaurant} />
+              </Link>
+            );
+          })}
       </div>
     </div>
   );

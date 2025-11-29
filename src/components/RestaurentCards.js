@@ -1,5 +1,5 @@
 import React from "react";
-import { CARD_URL } from "../utils/constants.js";
+import { IMAGE_BASE_URL } from "../utils/constants.js";
 
 const RestaurantCard = (props) => {
   const { name, cuisines, avgRating, costForTwo, cloudinaryImageId, sla } =
@@ -16,7 +16,7 @@ const RestaurantCard = (props) => {
       <img
         className="res-image"
         alt="res-image"
-        src={CARD_URL + cloudinaryImageId}
+        src={IMAGE_BASE_URL + cloudinaryImageId}
       ></img>
       <h3>{name}</h3>
       <h4>{cuisines.join(" , ")}</h4>
