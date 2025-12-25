@@ -11,7 +11,6 @@ const useRestaurants = () => {
     const data = await fetch(`https://namastedev.com/api/v1/listRestaurants`);
 
     const jsonData = await data.json();
-    // console.log("data inside the fetch", data);
     const restaurantArray =
       jsonData?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
@@ -24,7 +23,6 @@ const useRestaurants = () => {
     setRestaurants(restaurantData);
   };
 
-  console.log("fetched restaurants", restaurants);
   return restaurants;
 };
 

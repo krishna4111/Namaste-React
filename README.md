@@ -17,3 +17,12 @@
 - Helps to host our application on HTTPS.
 - Tree shaking - remove unused code
 - Different dev and production bundle.
+
+#Redux Toolkit
+
+- Install @reduxjs/toolkit and react-redux.
+- Build our store.
+- Connect our store to our app.
+- Create a Card Slice.
+- Dispatch Action.
+- Read the data using selectors.

@@ -5,12 +5,10 @@ const useOnlineStatus = () => {
   //check is online
   useEffect(() => {
     window.addEventListener("online", () => {
-      console.log("use is online");
       setOnlineStatus(true);
     });
 
     window.addEventListener("offline", () => {
-      console.log("user is offline");
       setOnlineStatus(false);
     });
   }, []);

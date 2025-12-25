@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx parcel index.html",
+    "start": "npx parcel ./src/index.html",
     "build": "npx parcel build index.html"
   },
   "repository": {
@@ -22,9 +22,13 @@
     "parcel": "^2.16.1"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
+    "@tailwindcss/postcss": "^4.1.17",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-redux": "^9.2.0",
     "react-router": "^6.28.0",
-    "react-router-dom": "^6.28.0"
+    "react-router-dom": "^6.28.0",
+    "tailwindcss": "^4.1.17"
   }
 }
