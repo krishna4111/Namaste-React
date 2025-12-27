@@ -5,8 +5,6 @@ import { addItem } from "../utils/appStore/cardSlice";
 const ItemList = ({ cardItems }) => {
   const dispatch = useDispatch();
 
-  console.log("cardItems", cardItems);
-
   const addToCard = (item) => {
     //Dispatch an Action
     //what ever i pass inside here it will goes to the action.payload
@@ -17,9 +15,9 @@ const ItemList = ({ cardItems }) => {
   return (
     <div className="font-light text-md">
       {cardItems.map((item) => {
-        console.log("inside card item -->", item);
         return (
           <div
+            data-testid="food-items"
             key={item.card.info.id}
             className="p-2 m-2 border-gray-300 border-b-2 text-left flex items-start gap-4"
           >

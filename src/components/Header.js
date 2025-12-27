@@ -24,7 +24,6 @@ const Header = () => {
   //   //In here we have to mention what part of(which slice) we have to access.
   //   return store.card.items;
   // });
-  console.log("card Items --> ", cartItems);
 
   return (
     <div className="flex justify-between items-center bg-pink-100 shadow-md sm:bg-yellow-100 h-20">

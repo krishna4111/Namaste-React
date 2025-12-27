@@ -1,4 +1,4 @@
-#parcel
+# parcel
 
 - Dev Build.
 - Local Server.
@@ -18,7 +18,7 @@
 - Tree shaking - remove unused code
 - Different dev and production bundle.
 
-#Redux Toolkit
+# Redux Toolkit
 
 - Install @reduxjs/toolkit and react-redux.
 - Build our store.
@@ -26,3 +26,22 @@
 - Create a Card Slice.
 - Dispatch Action.
 - Read the data using selectors.
+
+# Testing
+
+    - Unit Testing.
+    - Integration Testing.
+    - End to End Testing.
+
+# setting up testing in our app
+
+    - Install react testing library.
+    - Install Jest.
+    - Install Babel dependencies.
+    - Configure Babel.
+    - Configure parcel config file to disable default babel transpilation.
+    - Jest Configuration (use npx create-jest).
+    - Install jsdom library.
+    - Install npm i @babel/preset-react - to make jsx works in Test cases.
+    - Include @babel/preset-react inside my babel config
+    - Install @testing-library/jest-dom.
